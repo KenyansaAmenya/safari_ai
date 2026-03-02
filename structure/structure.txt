@@ -1,0 +1,22 @@
+travel_rag/
+├── data/
+│   ├── raw/                    # Your CSV files here
+│   └── processed/
+├── src/
+│   ├── __init__.py
+│   ├── config.py              # Configuration settings
+│   ├── data_loader.py         # CSV loading & cleaning
+│   ├── chunker.py             # Text chunking
+│   ├── embeddings.py          # Embedding generation
+│   ├── vector_store.py        # FAISS/Chroma management
+│   ├── retriever.py           # Semantic search
+│   ├── grok_client.py         # Grok API integration
+│   ├── rag_pipeline.py        # Main RAG orchestration
+│   └── evaluation.py          # Testing & metrics
+├── app/
+│   ├── cli.py                 # Command line interface
+│   ├── streamlit_app.py       # Web interface
+│   └── api.py                 # FastAPI backend
+├── requirements.txt
+├── .env.example
+└── README.md

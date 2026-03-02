@@ -1,0 +1,38 @@
+# Core
+pandas
+numpy
+python-dotenv
+
+# ML/Embeddings
+sentence-transformers
+transformers
+torch
+huggingface-hub
+
+# Vector DB
+chromadb
+faiss-cpu
+
+# API
+requests
+
+# UI
+streamlit
+fastapi
+uvicorn
+pydantic
+
+# Utils
+tqdm
+pyyaml
+python-json-logger
+
+# Data processing
+beautifulsoup
+lxml
+
+# testing
+pytest
+pytest-cov
+
+# 
