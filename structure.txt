@@ -1,0 +1,71 @@
+safari_ai/
+├── .env                              # Supabase credentials, GROK key
+├── requirements.txt
+├── README.md
+│
+├── src/
+│   ├── __init__.py
+│   │
+│   ├── config.py                     # Pydantic Settings, env vars
+│   │
+│   ├── domain/
+│   │   ├── __init__.py
+│   │   ├── models.py                 # Document, Chunk, Query, Response
+│   │   └── enums.py                  # Category, Location enums
+│   │
+│   ├── infrastructure/
+│   │   ├── __init__.py
+    |   |    Security.py
+│   │   ├── supabase_client.py        # Supabase client factory
+│   │   └── vecs_client.py            # Vecs collection manager
+│   │
+│   ├── ingestion/                    # Phase 1
+│   │   ├── __init__.py
+│   │   ├── loaders.py                # PDF, CSV, DOCX loaders (SRP)
+│   │   ├── cleaners.py               # Text normalization
+│   │   ├── chunkers.py               # Sliding window chunking
+│   │   ├── metadata_extractor.py     # Auto-extract location/category
+│   │   └── pipeline.py               # Orchestrate: load→clean→chunk→store
+│   │
+│   ├── embeddings/                   # Phase 1 
+│   │   ├── __init__.py
+│   │   ├── generator.py              # HuggingFace embeddings
+│   │   └── store.py                  # Supabase vector operations via vecs
+│   │
+│   ├── retrieval/                    # Phase 2
+│   │   ├── __init__.py
+│   │   ├── search.py                 # Semantic search + metadata filters
+│   │   ├── filters.py                # Filter builder (location, category)
+│   │   └── reranker.py               # Optional: simple score boosting
+│   │
+│   ├── llm/                          # Phase 2
+│   │   ├── __init__.py
+│   │   ├── client.py                 # GROK API wrapper
+│   │   ├── prompts.py                # RAG prompt templates
+│   │   └── response_parser.py        # Parse/clean LLM output
+│   │
+│   ├── evaluation/                   # Phase 3 
+│   │   ├── __init__.py
+│   │   ├── test_suite.py             # 10 predefined Kenya questions
+│   │   ├── metrics.py                # Precision, latency, hallucination
+│   │   └── runner.py                 # Run evaluation, generate report
+│   │
+│   └── api/                          # Phase 2
+│       ├── __init__.py
+│       ├── main.py                   # FastAPI app
+│       ├── deps.py                   # Dependency injection
+│       └── routes/
+│           ├── __init__.py
+│           ├── query.py              # POST /query
+│           ├── health.py             # GET /health
+│           └── eval.py               # POST /eval/run (trigger evaluation)
+│
+├── scripts/
+│   ├── ingest.py                     # CLI: python scripts/ingest.py --dir ./data
+│   ├── evaluate.py                   # CLI: python scripts/evaluate.py
+│   └── setup_supabase.py             # Initialize tables/extensions
+│
+└── tests/
+    ├── unit/
+    ├── integration/
+    └── fixtures/                     # Sample Kenya tourism docs
